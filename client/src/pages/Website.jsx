@@ -20,7 +20,7 @@ const Website = () => {
       <Hero />
     </div>
     <Companies />
-    {/* <Residencies/> */}
+    <Residencies/>
     <PlansPreview/>
     {/* <HeroReview/> */}
     <Value/>
