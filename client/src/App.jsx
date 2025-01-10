@@ -17,7 +17,7 @@ import UserDetailContext from "./context/UserDetailContext";
 // import DetailedPlansPage from "./pages/DetailedPlansPage/DetailedPlansPage";
 import FAQ from "./pages/Faq/Faq";
 // import PlansPage from "./pages/Plans/PlansPage";
-// import Admin from "./pages/Admin/Admin";
+import Admin from "./pages/Admin/Admin";
 import { useAuth0 } from "@auth0/auth0-react";
 import AdminPeople from "./pages/AdminPeople/AdminPeople";
 
