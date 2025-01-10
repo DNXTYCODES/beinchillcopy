@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL") // Replace with your MongoDB connection string
+}
+
+
+
+
+model User {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  email            String   @unique
+  image            String?
+  // role             String   @default("user") // New field for role
+  bookedVisits     Json[]
+  favResidenciesID String[] @db.ObjectId
+}
+
+model Residency {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  price       Int
+  // address     String
+  // city        String
+  // country     String
+  image       String
+  // facilities  Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // @@unique(fields: [address])
+}
+
+
+// this model is for a law firm database
+
+model Person {
+  id         String             @id @default(auto()) @map("_id") @db.ObjectId
+  role       String		// the persons job at the company
+  image      String		//image url
+  about      About?		
+  experience String		//the things the person has done in their career
+  expertise  PersonExpertise[]		//the persons specialty and kind of cases they can handle
+  publications Publication[]		// the publications by the person 
+  contacts   ExpertiseContact[]		// in the expertise page, If the person has a particular specialty they will come up under the list of people that have that particular specialty
+}
+
+model About {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  text       String		//text about the person 
+  linkedIn   String		// the person's linkedin url
+  awards     Award[]		// the persons awards
+  person     Person   @relation(fields: [personId], references: [id])
+  personId   String   @db.ObjectId @unique
+}
+
+model Award {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  awardName  String		// name of the award
+  awardee    String		// the award givers
+  expertise  Expertise? @relation(fields: [expertiseId], references: [id])
+  expertiseId String?   @db.ObjectId
+  about      About?     @relation(fields: [aboutId], references: [id])
+  aboutId    String?    @db.ObjectId
+}
+
+model Expertise {
+  id         String             @id @default(auto()) @map("_id") @db.ObjectId
+  about      String		// 
+  image      String		// the image of that to further illustrate the field
+  experience String		// the law firms past work with on that field of expertise
+  awards     Award[]		
+  contacts   ExpertiseContact[]	// people who are in that field of expertise(key contacts)	
+  persons    PersonExpertise[]		// people who are in that field of expertise(key contacts)
+}
+
+model Publication {
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  chaptersInBooks   String[]	// persons contribution to some books
+  image       String		//the image/illustration url of the book
+  category          Category	//the category of the book(insights, company news, events, podcasts)
+  date              DateTime	//time of upload
+  journalArticles   String[]	// the persons journal articles
+  otherPublications String[]	// honorable mentions that are not on the uploaded to site
+  person            Person     @relation(fields: [personId], references: [id]) //the person who published the book
+  personId          String     @db.ObjectId
+}
+
+model PersonExpertise {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  personId    String    @db.ObjectId
+  expertiseId String    @db.ObjectId
+
+  person      Person    @relation(fields: [personId], references: [id])
+  expertise   Expertise @relation(fields: [expertiseId], references: [id])
+
+  @@unique([personId, expertiseId])
+}
+
+model ExpertiseContact {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  expertiseId String    @db.ObjectId
+  personId    String    @db.ObjectId
+
+  expertise   Expertise @relation(fields: [expertiseId], references: [id])
+  person      Person    @relation(fields: [personId], references: [id])
+
+  @@unique([expertiseId, personId])
+}
+
+enum Category {
+  INSIGHTS
+  COMPANY_NEWS
+  EVENTS
+  PODCASTS
+}

@@ -1,0 +1,73 @@
+.detailed-plans-page {
+  background-color: white;
+  padding: 3rem 0;
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.plan-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.plan-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.plan-details,
+.appliance-details,
+.cost-details {
+  margin-top: 2rem;
+}
+
+.plan-details h3,
+.appliance-details h3,
+.cost-details h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.plan-details p,
+.appliance-details ul,
+.cost-details p {
+  font-size: 1rem;
+  color: var(--black);
+}
+
+.appliance-item {
+  font-size: 1rem;
+  color: var(--black);
+  margin: 0.5rem 0;
+}
+
+.total-cost {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.dppbutton {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.dppbutton:hover {
+  background-color: var(--blue-gradient);
+  cursor: pointer;
+}

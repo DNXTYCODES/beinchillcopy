@@ -1,0 +1,56 @@
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 0; /* Space between cards */
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.plan-card {
+  /* background: var(--lightBlue);
+  border-radius: 8px;
+  box-shadow: var(--shadow); */
+  overflow: hidden; /* Ensures the image stays within bounds */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100%;
+  /* cursor: pointer; */
+  transition: transform 0.3s ease-in-out;
+}
+
+.plan-card:hover {
+  /* transform: scale(1.03); */
+}
+
+.plan-image {
+  width: 100%; /* Makes the image take full width of the card */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image scales without distortion */
+  cursor: pointer;
+}
+
+.plan-image:hover {
+  opacity: .8;
+  transition: ease-in .15s;
+}
+
+.plan-card p {
+  /* background: #f4f4f4; Optional background for the title section */
+  padding: 1rem;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  /* color: #333; */
+}
+
+.plan-card a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.plan-card a:hover {
+  text-decoration: underline;
+}
