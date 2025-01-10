@@ -52,7 +52,7 @@ function App() {
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Website />} />
-                <Route path="/admindpeople" element={<AdminPeople />} />
+                <Route path="/adminpeople" element={<AdminPeople />} />
                 {/* <Route path="/properties">
                   <Route index element={<Properties />} />
                   <Route path=":propertyId" element={<Property />} />
